@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>老板汇总 · 保洁外包考核站</title>
+<link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="logo">🧹</span>保洁外包考核站</div>
+    <div class="spacer"></div>
+    <div class="user-chip">
+      <span class="role-badge boss">老板（只读）</span>
+      <span id="userName"></span>
+      <button class="btn btn-sm btn-danger" id="logoutBtn">退出</button>
+    </div>
+  </div>
+</header>
+
+<main class="container" style="padding-top:18px;padding-bottom:40px">
+  <div class="stat-grid" id="overall"></div>
+
+  <div class="card">
+    <h2>👥 员工考核汇总 <span class="sub">点击员工卡片查看问题/整改图片对比</span></h2>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="搜索员工姓名 / 工号">
+      <select id="progressFilter">
+        <option value="">全部进度</option>
+        <option value="pending">有未整改</option>
+        <option value="done">已全部整改</option>
+        <option value="empty">暂无问题</option>
+      </select>
+      <select id="sortBy">
+        <option value="points">按扣分排序</option>
+        <option value="pending">按待整改数排序</option>
+        <option value="progress">按进度排序</option>
+        <option value="name">按姓名排序</option>
+      </select>
+      <button class="btn btn-sm" id="expandAllBtn">全部展开</button>
+      <button class="btn btn-sm" id="collapseAllBtn">全部收起</button>
+    </div>
+    <div id="employeeList"><div class="loading"><div class="spinner"></div>加载中…</div></div>
+  </div>
+</main>
+
+<script src="/js/common.js"></script>
+<script src="/js/boss.js"></script>
+</body>
+</html>

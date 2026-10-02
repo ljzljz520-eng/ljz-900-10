@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录 · 保洁外包考核站</title>
+<link rel="stylesheet" href="/css/common.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">🧹</div>
+    <h1>保洁外包考核站</h1>
+    <p class="sub">问题扣分 · 整改闭环 · 汇总统计</p>
+
+    <div class="role-switch">
+      <button type="button" id="roleAdmin" class="active">甲方管理员</button>
+      <button type="button" id="roleBoss">老板</button>
+    </div>
+
+    <form id="loginForm">
+      <div class="form-row">
+        <label>账号</label>
+        <input type="text" id="username" autocomplete="username" placeholder="请输入账号" required>
+      </div>
+      <div class="form-row">
+        <label>密码</label>
+        <input type="password" id="password" autocomplete="current-password" placeholder="请输入密码" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="loginBtn">登 录</button>
+    </form>
+
+    <div class="default-hint" id="defaultHint"></div>
+  </div>
+  <script src="/js/common.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
