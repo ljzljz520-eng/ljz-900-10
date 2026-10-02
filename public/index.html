@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>登录 - 保洁外包考核站</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="login-box">
+    <div class="card">
+      <div style="text-align:center;margin-bottom:18px">
+        <div style="font-size:34px">🧹</div>
+        <div class="logo" style="font-size:20px">保洁外包<span>考核站</span></div>
+        <div class="muted" style="margin-top:4px">问题考核 · 扫码整改 · 汇总看板</div>
+      </div>
+      <div class="seg" id="seg">
+        <button type="button" data-role="admin" class="on">甲方管理员</button>
+        <button type="button" data-role="boss">外包老板</button>
+      </div>
+      <form id="loginForm">
+        <div class="field">
+          <label>账号</label>
+          <input type="text" id="username" autocomplete="username" placeholder="请输入账号" required>
+        </div>
+        <div class="field">
+          <label>密码</label>
+          <input type="password" id="password" autocomplete="current-password" placeholder="请输入密码" required>
+        </div>
+        <button class="btn" id="submitBtn" style="width:100%" type="submit">登 录</button>
+      </form>
+      <div class="muted" style="margin-top:14px;text-align:center;line-height:1.8">
+        演示账号：管理员 <b>admin / admin123</b><br>老板 <b>boss / boss123</b>
+      </div>
+    </div>
+    <div class="muted" style="text-align:center">员工无需登录，微信/浏览器扫描管理员下发的整改二维码即可提交整改照片</div>
+  </div>
+</div>
+<script src="/common.js"></script>
+<script>
+let role = 'admin';
+$('#seg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  role = b.dataset.role;
+  $$('#seg button').forEach(x => x.classList.toggle('on', x === b));
+});
+$('#loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = $('#submitBtn');
+  btn.disabled = true; btn.textContent = '登录中…';
+  try {
+    const r = await api('/api/login', {
+      method: 'POST',
+      body: { role, username: $('#username').value.trim(), password: $('#password').value }
+    });
+    toast(`欢迎，${r.name}`, 'ok');
+    location.href = r.redirect;
+  } catch (err) {
+    toast(err.message, 'err', 5000);
+    btn.disabled = false; btn.textContent = '登 录';
+  }
+});
+</script>
+</body>
+</html>

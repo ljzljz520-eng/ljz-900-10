@@ -1,0 +1,12 @@
+{
+  "name": "cleaning-assess",
+  "version": "1.0.0",
+  "description": "保洁外包考核站：甲方上传问题与扣分，员工扫码整改，老板汇总查看",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

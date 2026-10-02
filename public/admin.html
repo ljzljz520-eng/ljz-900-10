@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>甲方管理后台 - 保洁外包考核站</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="inner">
+    <div class="logo">🧹 保洁外包<span>考核站</span></div>
+    <div class="spacer"></div>
+    <span class="who" id="who"></span>
+    <button class="btn ghost sm" id="logoutBtn">退出</button>
+  </div>
+</div>
+<div class="wrap">
+
+  <div class="card">
+    <h2>➕ 登记考核问题（扣分 + 现场照片）</h2>
+    <form id="issueForm">
+      <div class="row">
+        <div class="field" style="min-width:200px">
+          <label>考核员工 <b style="color:var(--danger)">*</b></label>
+          <select id="fEmp" required><option value="">— 选择外包员工 —</option></select>
+        </div>
+        <div class="field" style="min-width:200px">
+          <label>扣分项 <b style="color:var(--danger)">*</b></label>
+          <input type="text" id="fItem" list="itemPresets" maxlength="50" placeholder="如：卫生间地面有污渍">
+          <datalist id="itemPresets"></datalist>
+        </div>
+        <div class="field" style="max-width:130px">
+          <label>扣分 <b style="color:var(--danger)">*</b></label>
+          <input type="number" id="fPoints" min="0.1" max="100" step="0.1" placeholder="2" required>
+        </div>
+      </div>
+      <div class="field">
+        <label>问题说明（选填）</label>
+        <textarea id="fNote" maxlength="200" placeholder="位置、具体情况等，最多 200 字"></textarea>
+      </div>
+      <div class="field">
+        <label>问题现场照片 <b style="color:var(--danger)">*</b></label>
+        <div id="fUploader"></div>
+      </div>
+      <button class="btn" type="submit" id="issueSubmit">提交考核记录</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>👷 外包员工与整改二维码</h2>
+    <form id="empForm" class="row" style="align-items:flex-end">
+      <div class="field"><label>姓名 *</label><input type="text" id="eName" maxlength="20" placeholder="张姐"></div>
+      <div class="field"><label>工号（选填）</label><input type="text" id="eNo" maxlength="30" placeholder="BJ-007"></div>
+      <div class="field"><label>手机号（选填）</label><input type="tel" id="ePhone" maxlength="20" placeholder="13800000000"></div>
+      <button class="btn" type="submit">添加员工并生成二维码</button>
+    </form>
+    <div style="margin:12px 0;font-size:13px;color:var(--sub)">
+      新员工链接默认有效期：
+      <input type="number" id="linkDays" min="1" max="365" style="width:80px;display:inline-block;padding:6px 8px"> 天
+      <button class="btn sec sm" id="saveDays" type="button">保存默认值</button>
+      <span class="muted" id="daysHint"></span>
+    </div>
+    <div id="empList"></div>
+  </div>
+
+  <div class="card">
+    <h2>📋 考核记录总览</h2>
+    <div class="filters">
+      <select id="filterEmp"><option value="">全部员工</option></select>
+      <select id="filterStatus">
+        <option value="">全部状态</option>
+        <option value="pending">待整改</option>
+        <option value="done">已整改</option>
+      </select>
+    </div>
+    <div id="issueList"></div>
+  </div>
+
+</div>
+
+<!-- 二维码弹窗 -->
+<div class="qr-modal" id="qrModal">
+  <div class="qr-box">
+    <h2 style="justify-content:center;margin-bottom:4px" id="qrTitle">员工整改二维码</h2>
+    <div class="muted" id="qrEmp" style="margin-bottom:6px"></div>
+    <img id="qrImg" alt="整改二维码">
+    <div class="muted" style="margin:6px 0 10px">员工用微信/浏览器扫码即可查看待整改问题并上传整改照片</div>
+    <div class="link-box" id="qrLink"></div>
+    <div class="muted" id="qrExp" style="margin:8px 0 14px"></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn sec sm" id="copyLink" style="flex:1">复制链接</button>
+      <button class="btn ghost sm" id="closeQr" style="flex:1">关 闭</button>
+    </div>
+  </div>
+</div>
+<script src="/common.js"></script>
+<script src="/admin.js"></script>
+</body>
+</html>

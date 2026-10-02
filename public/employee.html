@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>整改提交 - 保洁外包考核站</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="inner">
+    <div class="logo">🧹 我的整改任务</div>
+    <div class="spacer"></div>
+    <span class="who" id="who"></span>
+  </div>
+</div>
+<div class="wrap" style="max-width:760px">
+  <div id="expireBanner" class="expire-warn" style="display:none"></div>
+
+  <div class="card">
+    <h2 id="myName">加载中…</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="n red" id="sPoints">0</div><div class="l">累计扣分</div></div>
+      <div class="stat"><div class="n orange" id="sPending">0</div><div class="l">待整改</div></div>
+      <div class="stat"><div class="n green" id="sDone">0</div><div class="l">已整改</div></div>
+      <div class="stat"><div class="n" id="sProgress">0%</div>
+        <div class="l">整改进度<div class="progress"><i id="sBar" style="width:0"></i></div></div></div>
+    </div>
+  </div>
+
+  <div id="issueList"></div>
+</div>
+<script src="/common.js"></script>
+<script src="/employee.js"></script>
+</body>
+</html>

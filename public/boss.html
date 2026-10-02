@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>整改汇总看板 - 保洁外包考核站</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="inner">
+    <div class="logo">📊 外包整改<span>汇总看板</span></div>
+    <div class="spacer"></div>
+    <span class="who" id="who"></span>
+    <button class="btn ghost sm" id="refreshBtn">刷新</button>
+    <button class="btn ghost sm" id="logoutBtn">退出</button>
+  </div>
+</div>
+<div class="wrap">
+  <div class="card">
+    <h2>整体情况</h2>
+    <div class="stat-grid" id="overall"></div>
+    <div class="muted" id="genAt" style="margin-top:10px"></div>
+  </div>
+  <div id="groups"></div>
+</div>
+<script src="/common.js"></script>
+<script src="/boss.js"></script>
+</body>
+</html>
